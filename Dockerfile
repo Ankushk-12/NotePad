@@ -21,8 +21,13 @@ RUN apt-get update && \
 # Set the environment variable to use the host's X11 server
 ENV DISPLAY=:0
 
+# Enable X11 forwarding by sharing the X11 Unix socket with the container
+# Mount the host's X11 socket to /tmp/.X11-unix inside the container
+# This will allow the container to use the host's X11 server
+VOLUME /tmp/.X11-unix
+
 # Expose the port that the application will listen on (adjust this according to your application's requirements)
-EXPOSE 8970:8970
+EXPOSE 8970
 
 # Create a directory for the application
 RUN mkdir /app
