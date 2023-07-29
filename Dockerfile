@@ -19,6 +19,6 @@ RUN mkdir /app
 
 # COPY --from=build /src/src/main/resources app/
 
-COPY --from=build /src/lib/build/libs/lib-1.jar /app/lib-1.jar
+COPY --from=build /lib/build/libs/lib-1.jar /app/lib-1.jar
 
 ENTRYPOINT ["java","-jar","/app/lib-1.jar"]
