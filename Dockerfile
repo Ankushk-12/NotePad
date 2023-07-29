@@ -19,7 +19,7 @@ RUN apt-get update && \
     libxext6 libxtst6 libxrender1 libxi6
 
 # Set the environment variable to use the host's X11 server
-ENV unset DISPLAY
+ENV unset DISPLAY:10.0
 
 # Enable X11 forwarding by sharing the X11 Unix socket with the container
 # Mount the host's X11 socket to /tmp/.X11-unix inside the container
