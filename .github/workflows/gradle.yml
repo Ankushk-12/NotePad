@@ -34,5 +34,5 @@ jobs:
         with:
           image: ankushk143/notepad_1
           registry: docker.io
-          username: "AnkushK143"
-          password: "QdF72d@8eeU#YmE"
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
