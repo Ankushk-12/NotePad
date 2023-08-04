@@ -28,9 +28,6 @@ jobs:
           export GRADLE_HOME=$PWD/gradle-6.8
           export PATH=$GRADLE_HOME/bin:$PATH
 
-      - name: Verify Gradle version
-        run: gradle --version
-
       - name: Build with Gradle
         run: gradle build
 
@@ -42,4 +39,3 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          token: ${{secrets.DOCKERHUB_TOKEN}}
