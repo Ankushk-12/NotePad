@@ -34,7 +34,12 @@ jobs:
           images: |
             my-docker-hub-namespace/my-docker-hub-repository
             ghcr.io/${{ github.repository }}
-      
+
+      # Add a new step to tag and push the latest image
+      - name: Tag and push latest image
+        run: |
+          docker tag my-docker-hub-namespace/my-docker-hub-repository:latest my-docker-hub-namespace/my-docker-hub-repository:${{ steps.meta.outputs.latest_tag }}
+          docker push my-docker-hub-namespace/my-docker-hub-repository:${{ steps.meta.outputs.latest_tag }}
       - name: Build and push Docker images
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
@@ -42,9 +47,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      # Add a new step to tag and push the latest image
-      - name: Tag and push latest image
-        run: |
-          docker tag my-docker-hub-namespace/my-docker-hub-repository:latest my-docker-hub-namespace/my-docker-hub-repository:${{ steps.meta.outputs.latest_tag }}
-          docker push my-docker-hub-namespace/my-docker-hub-repository:${{ steps.meta.outputs.latest_tag }}
